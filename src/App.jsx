@@ -16,3 +16,6 @@ function App() {
 }
 
 export default App
+
+
+// "npm --prefix \"$RESOURCE_DIR\" run lint"
