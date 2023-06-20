@@ -248,7 +248,7 @@ const AnswerSurvey = () => {
                         <div key={item.id}>
                           {
                               item.questionType === "1" ? (
-                                  <div className="border-bottom py-4">
+                                  <div className="border-start border-primary border-4 ps-4 py-4">
                                     <div className="d-flex justify-content-between mb-3">
                                       <h5>{item.question}</h5> 
                                     </div>
@@ -268,7 +268,7 @@ const AnswerSurvey = () => {
                                     </div>
                                   </div>
                                 ) : item.questionType === '2' ? (
-                                    <div className="border-bottom py-4">
+                                    <div className="border-start border-primary border-4 ps-4 py-4">
                                       <div className="d-flex justify-content-between mb-3">
                                         <h5>{item.question}</h5>
                                       </div>
@@ -288,7 +288,7 @@ const AnswerSurvey = () => {
                                       </div>
                                     </div>
                                 ) : item.questionType === '3' ? (
-                                    <div className="border-bottom py-4">
+                                    <div className="border-start border-primary border-4 ps-4 py-4">
                                       <div className="d-flex justify-content-between mb-3">
                                         <h5>{item.question}</h5>
                                       </div>
@@ -297,7 +297,7 @@ const AnswerSurvey = () => {
                                       </div>
                                   </div>
                                 ) : item.questionType === '4' ? (
-                                  <div className="border-bottom py-4">
+                                  <div className="border-start border-primary border-4 ps-4 py-4">
                                     <div className="d-flex justify-content-between mb-3">
                                       <h5>{item.question}</h5>
                                     </div>
@@ -373,7 +373,7 @@ const AnswerSurvey = () => {
                                     </div>
                                   </div>
                                 ) : (
-                                  <div className="border-bottom py-4">
+                                  <div className="border-start border-primary border-4 ps-4 py-4">
                                   <div className="d-flex justify-content-between mb-3">
                                     <h5>{item.question}</h5>
                                   </div>
