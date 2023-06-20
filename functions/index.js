@@ -16,19 +16,14 @@ exports.newUserSignUp = functions.auth.user().onCreate(async (user) => {
   });
 });
 
-// http callable function (adding a request)
-exports.addRequest = functions.https.onCall((data, context) => {
-  return admin.firestore().collection("users").add({
-    username: "zenric",
-  });
-});
-
+// get users
 exports.getUsers = functions.https.onCall(async (data, context) => {
   const snapshots = await admin.firestore().collection("users").get();
   const list = snapshots.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   return list;
 });
 
+// get user
 exports.getUser = functions.https.onCall(async (data, context) => {
   const users = await admin
     .firestore()
@@ -45,6 +40,7 @@ exports.getUser = functions.https.onCall(async (data, context) => {
   return arr[0];
 });
 
+// get survey
 exports.getSurvey = functions.https.onCall(async (data, context) => {
   const survey = await admin
     .firestore()
@@ -54,6 +50,8 @@ exports.getSurvey = functions.https.onCall(async (data, context) => {
   return survey.data();
 });
 
+
+// add survey
 exports.addSurvey = functions.https.onCall(async (data, context) => {
   const { title, desc } = data;
   await admin.firestore().collection("survey").add({
@@ -64,6 +62,7 @@ exports.addSurvey = functions.https.onCall(async (data, context) => {
   return "Survey added";
 });
 
+// updateSurvey Details
 exports.updateSurveyDetails = functions.https.onCall(async (data, context) => {
   const { title, desc, id } = data;
   await admin.firestore().collection("survey").doc(id).update({
@@ -73,6 +72,8 @@ exports.updateSurveyDetails = functions.https.onCall(async (data, context) => {
   return "Survey details updated";
 });
 
+
+// add question and answer to survey
 exports.addQuestionAndAnswer = functions.https.onCall(async (data, context) => {
   const addedQuestion = await admin.firestore().collection("question").add({
     surveyId: data.surveyId,
@@ -99,7 +100,7 @@ exports.addQuestionAndAnswer = functions.https.onCall(async (data, context) => {
   return "survey question added";
 });
 
-
+// delete questions
 exports.deleteQuestionsAndAnswers = functions.https.onCall(async (data, context) => {
 
   if (!context.auth) {
@@ -121,7 +122,7 @@ exports.deleteQuestionsAndAnswers = functions.https.onCall(async (data, context)
   return "question deleted";
 });
 
-
+// get questions
 exports.getQuestionsAndAnswers = functions.https.onCall(
   async (data, context) => {
 
@@ -169,6 +170,8 @@ exports.getQuestionsAndAnswers = functions.https.onCall(
   }
 );
 
+
+// edit survey
 exports.editSurvey = functions.https.onCall(async (data, context) => {
   const { title, desc, questions } = data;
 
@@ -199,13 +202,14 @@ exports.editSurvey = functions.https.onCall(async (data, context) => {
   return answers;
 });
 
+// delete survey
 exports.deleteSurvey = functions.https.onCall(async (data, context) => {
   await admin.firestore().collection("survey").doc(data.id).delete();
   return "Survey deleted";
 });
 
 
-
+// submit user
 exports.submitUserSurvey = functions.https.onCall(async (data, context) => {
 
   if (!context.auth) {
@@ -251,7 +255,7 @@ exports.submitUserSurvey = functions.https.onCall(async (data, context) => {
   return "User Survey submitted";
 });
 
-
+// survey table report
 exports.surveyTableReport = functions.https.onCall(async (data, context) => {
 
   let totalUserSubmitted = 0
@@ -305,7 +309,7 @@ exports.surveyTableReport = functions.https.onCall(async (data, context) => {
 });
 
 
-
+// survey report
 exports.getSurveyReport = functions.https.onCall(async (data, context) => {
 
   let newSurveys = []
@@ -439,7 +443,7 @@ exports.getSurveyReport = functions.https.onCall(async (data, context) => {
 });
 
 
-
+// admin stat
 exports.getStats = functions.https.onCall(async (data, context) => {
   const totalSurveys = await admin.firestore().collection("survey").get();
   const totalUsers = await admin.firestore().collection("users").get();

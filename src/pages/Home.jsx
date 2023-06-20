@@ -8,6 +8,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [stat, setStat] = useState({})
 
+  // get surveys
   useEffect(()=> {
     const getStatFunc = () => {
       setLoading(true)

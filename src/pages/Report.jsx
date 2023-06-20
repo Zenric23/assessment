@@ -9,6 +9,8 @@ const Report = () => {
 
     const {id} = useParams()
 
+
+    // get reports
      useEffect(()=> {
       const getQuestionAndAnswer = () => {
         setLoading(true)

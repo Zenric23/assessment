@@ -48,6 +48,7 @@ const AnswerSurvey = () => {
   
  
 
+  // handle radio type
   const onRadioOptionChange = (e, answerId, questionId) => {
     const value = e.target.value
 
@@ -60,7 +61,7 @@ const AnswerSurvey = () => {
     setUserAnswers(newArr)
   }
 
-
+  // handle checkbox type
   const onCheckboxChange = (e, answerId, questionId, index) => {
       const value = e.target.value
       const isChecked = e.target.checked
@@ -85,7 +86,7 @@ const AnswerSurvey = () => {
       setUserAnswers(newArr)
   }
 
-
+  // handle textfield type
   const onTextAreaChange = (e, answerId, questionId) => {
     
     const newState = userAnswers.map(item=> 
@@ -94,7 +95,7 @@ const AnswerSurvey = () => {
     setUserAnswers(newState)
   }
 
-
+  // handle dropdown type
   const onDropDown = (e, questionId) => {
 
     const label = e.target[e.target.selectedIndex].innerHTML
@@ -105,6 +106,7 @@ const AnswerSurvey = () => {
     setUserAnswers(newState)
   }
 
+  // handle rating type
 
   const onRating = (answer, answerId, questionId) => {
     
@@ -113,7 +115,7 @@ const AnswerSurvey = () => {
     )
     setUserAnswers(newState)
   }
-  console.log(userAnswers)
+  
   
   useEffect(() => {
     // get questions
@@ -161,8 +163,9 @@ const AnswerSurvey = () => {
     getSurveyDetails();
   }, []);
 
-
+  
   useEffect(()=> {
+    // get user survey
     const getUserAnswers = () => {
       setLoading(true)
       const getUserSurveys = callCloudFunc("getUserSurveys");
@@ -184,6 +187,7 @@ const AnswerSurvey = () => {
     e.preventDefault()
     setAddLoading(true)
 
+    // mapped data to submit
     const newArr = userAnswers.map(item=> {
       if(item.questionType === '1') {
         const answers = checkAnswers.map(check=> 
@@ -195,6 +199,7 @@ const AnswerSurvey = () => {
         return item
     })
 
+    // call cloud function submit survey
     const submitUserSurvey = callCloudFunc('submitUserSurvey');
     submitUserSurvey({answers: newArr, userId: user.userId, surveyId: id})
       .then(() => {
@@ -207,7 +212,6 @@ const AnswerSurvey = () => {
         window.alert('Survey failed to submit')
       });
     
-    console.log(newArr)
   }
 
   if(loading ) {

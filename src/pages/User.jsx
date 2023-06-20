@@ -20,6 +20,8 @@ const User = () => {
   const [loading, setLoading ] = useState(false)
   const [users, setUsers] = useState([])
 
+
+  // get realtime users
   useEffect(()=> {
     const getData = () => {
       setLoading(true)

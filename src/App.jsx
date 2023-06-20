@@ -31,7 +31,7 @@ function App() {
   const {pathname} = useLocation()
 
 
-  
+  // init login state
   useEffect(()=> {
     onAuthStateChanged(auth, (user)=> {
       if(user && !location.path !== 'login'){
@@ -49,6 +49,8 @@ function App() {
     })
   }, [])
 
+
+  // page loading
   if(state === 'logging') {
     return (
       <div className="text-center mt-5">
@@ -67,8 +69,6 @@ function App() {
   }
 
  
-
-  
   return (
     <>
       {user && <Navbar />} 

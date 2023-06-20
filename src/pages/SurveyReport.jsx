@@ -10,16 +10,18 @@ import {
   MDBCardBody,
   MDBSpinner,
 } from "mdb-react-ui-kit";
-import { AiFillEye, AiFillEdit, AiFillDelete } from "react-icons/ai";
-import {Link, useNavigate} from 'react-router-dom'
+import { AiFillEye } from "react-icons/ai";
+import {Link} from 'react-router-dom'
 import { callCloudFunc } from "../../firebaseConfig";
-// import { AiFillEye } from 'react-icons/ai'
+
 
 const SurveyReport = () => {
 
   const [loading, setLoading] = useState(false)
   const [surveys, setSurveys] = useState([])
 
+
+    // get survey reports
     useEffect(()=> {
       const getQuestionAndAnswer = () => {
         setLoading(true)

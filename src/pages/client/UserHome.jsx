@@ -19,12 +19,13 @@ import { UserContext } from "../../context/userContext";
 const UserHome = () => {
   const {user} = useContext(UserContext)
 
-  const navigate = useNavigate();
   
   const [surveys, setSurveys] = useState([]) 
   const [loading, setLoading] = useState(false)
 
+
   useEffect(()=> {
+    // get realtime surveys
     const getData = () => {
       const collectionRef = collection(database, 'survey')
       const q = query(

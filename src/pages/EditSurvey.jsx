@@ -37,7 +37,7 @@ const EditSurvey = () => {
   const [question, setQuestion] = useState('')
   const [questionType, setQuestionType] = useState('')
   const [labels, setlabels] = useState(undefined)
-  console.log(questionType)
+  
   const [loading, setLoading] = useState(false)
 
   const {
