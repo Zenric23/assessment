@@ -1,6 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { getAuth } from "firebase/auth";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,6 +15,14 @@ const firebaseConfig = {
   appId: "1:560005674857:web:9971dd26a08b9860216ff8"
 };
 
+// auth
+
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth()
 export const database = getFirestore(app);
+
+// Call cloud functions
+export const callCloudFunc = (endpoint) => {
+  return httpsCallable(getFunctions(), endpoint);
+}

@@ -1,3 +1,25 @@
 body {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }
+
+
+.navbar { 
+    height: 60px;
+}
+
+
+.sidebar {
+    padding: 20px;
+    width: 250px;
+    height: 100vh;
+    position: sticky;
+    top: 0px;
+}
+
+.dropdown {
+    position: absolute;
+    padding: 8px;
+    background-color: white;
+    border: 1px solid black;
+    left: 10px;
+}
